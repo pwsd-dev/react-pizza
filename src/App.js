@@ -1,5 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./scss/app.scss";
 
 function App() {
   return (
@@ -130,7 +131,8 @@ function App() {
                     <i>2</i>
                   </div>
                 </div>
-              </div> <div class="pizza-block">
+              </div>{" "}
+              <div class="pizza-block">
                 <img
                   class="pizza-block__image"
                   src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
@@ -167,7 +169,8 @@ function App() {
                     <i>2</i>
                   </div>
                 </div>
-              </div> <div class="pizza-block">
+              </div>{" "}
+              <div class="pizza-block">
                 <img
                   class="pizza-block__image"
                   src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
@@ -204,7 +207,8 @@ function App() {
                     <i>2</i>
                   </div>
                 </div>
-              </div> <div class="pizza-block">
+              </div>{" "}
+              <div class="pizza-block">
                 <img
                   class="pizza-block__image"
                   src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
@@ -241,7 +245,8 @@ function App() {
                     <i>2</i>
                   </div>
                 </div>
-              </div> <div class="pizza-block">
+              </div>{" "}
+              <div class="pizza-block">
                 <img
                   class="pizza-block__image"
                   src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
@@ -278,7 +283,8 @@ function App() {
                     <i>2</i>
                   </div>
                 </div>
-              </div> <div class="pizza-block">
+              </div>{" "}
+              <div class="pizza-block">
                 <img
                   class="pizza-block__image"
                   src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
@@ -315,7 +321,8 @@ function App() {
                     <i>2</i>
                   </div>
                 </div>
-              </div> <div class="pizza-block">
+              </div>{" "}
+              <div class="pizza-block">
                 <img
                   class="pizza-block__image"
                   src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
@@ -352,7 +359,8 @@ function App() {
                     <i>2</i>
                   </div>
                 </div>
-              </div> <div class="pizza-block">
+              </div>{" "}
+              <div class="pizza-block">
                 <img
                   class="pizza-block__image"
                   src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
@@ -389,7 +397,8 @@ function App() {
                     <i>2</i>
                   </div>
                 </div>
-              </div> <div class="pizza-block">
+              </div>{" "}
+              <div class="pizza-block">
                 <img
                   class="pizza-block__image"
                   src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
@@ -431,7 +440,7 @@ function App() {
           </div>
         </div>
       </div>
-    </div >
+    </div>
   );
 }
 
