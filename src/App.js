@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./scss/app.scss";
 import Header from "./Header";
+import Button from "./Button";
 
 console.log();
 
@@ -10,6 +11,8 @@ function App() {
     <div>
       <div className="wrapper">
         <Header />
+        <Button text="Привет" outline />
+        <Button text="Пока" />
         <div className="content">
           <div className="container">
             <div className="content__top">
