@@ -1,18 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./scss/app.scss";
-import Header from "./Header";
-import Button from "./Button";
+import Header from "./components/Header";
+import Button from "./components/Button";
 
 console.log();
 
 function App() {
+  const handleClick = () => {
+    alert("hi");
+  };
   return (
     <div>
       <div className="wrapper">
         <Header />
-        <Button text="Привет" outline />
-        <Button text="Пока" />
         <div className="content">
           <div className="container">
             <div className="content__top">
