@@ -1,8 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./scss/app.scss";
-import Header from "./components/Header";
-import Categories from "./components/Categories";
+import { Header, Categories } from "./components";
 
 console.log();
 
@@ -18,7 +17,15 @@ function App() {
           <div className="container">
             <div className="content__top">
               <div className="categories">
-                <Categories />
+                <Categories
+                  items={[
+                    "Мясные",
+                    "Вегетарианская",
+                    "Гриль",
+                    "Острые",
+                    "Закрытые",
+                  ]}
+                />
               </div>
               <div className="sort">
                 <div className="sort__label">
