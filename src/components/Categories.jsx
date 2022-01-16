@@ -1,21 +1,40 @@
 import React from "react";
 
-function Categories({ items }) {
-  console.log(items);
-  //   items.map((item) => { // - тот случай, когда при выносе метода стили не подхватились
-  //     return <li>{item}</li>;
-  //   });
-  return (
-    <div>
-      <ul>
-        <li className="active">Все</li>
-        <li>Мясные</li>
-        {items.map((item) => {
-          return <li>{item}</li>;
-        })}
-      </ul>
-    </div>
-  );
+class Categories extends React.Component {
+  render() {
+    const { items, onClickItem } = this.props;
+    return (
+      <div>
+        <ul>
+          <li className="active">Все</li>
+          {items.map((item, index) => {
+            return (
+              <li onClick={() => onClickItem(item)} key={`${item}_${index}`}>
+                {item}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    );
+  }
 }
+
+// function Categories({ items, onClickItem }) {
+//   return (
+//     <div>
+//       <ul>
+//         <li className="active">Все</li>
+//         {items.map((item, index) => {
+//           return (
+//             <li onClick={() => onClickItem(item)} key={`${item}_${index}`}>
+//               {item}
+//             </li>
+//           );
+//         })}
+//       </ul>
+//     </div>
+//   );
+// }
 
 export default Categories;

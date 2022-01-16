@@ -6,9 +6,6 @@ import { Header, Categories } from "./components";
 console.log();
 
 function App() {
-  const handleClick = () => {
-    alert("hi");
-  };
   return (
     <div>
       <div className="wrapper">
@@ -18,6 +15,7 @@ function App() {
             <div className="content__top">
               <div className="categories">
                 <Categories
+                  onClickItem={(item) => console.log(item)}
                   items={[
                     "Мясные",
                     "Вегетарианская",
