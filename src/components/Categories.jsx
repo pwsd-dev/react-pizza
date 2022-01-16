@@ -1,15 +1,26 @@
 import React from "react";
 
 class Categories extends React.Component {
+  state = {
+    activeItem: 3,
+  };
+  selectItem = (index) => {
+    this.setState({
+      activeItem: index,
+    });
+  };
   render() {
-    const { items, onClickItem } = this.props;
+    const { items } = this.props;
     return (
       <div>
         <ul>
-          <li className="active">Все</li>
           {items.map((item, index) => {
             return (
-              <li onClick={() => onClickItem(item)} key={`${item}_${index}`}>
+              <li
+                className={this.state.activeItem === index ? "active" : ""}
+                onClick={() => this.selectItem(index)}
+                key={`${item}_${index}`}
+              >
                 {item}
               </li>
             );

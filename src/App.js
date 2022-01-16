@@ -17,6 +17,7 @@ function App() {
                 <Categories
                   onClickItem={(item) => console.log(item)}
                   items={[
+                    "Все",
                     "Мясные",
                     "Вегетарианская",
                     "Гриль",
