@@ -1,6 +1,6 @@
 import React from "react";
 
-function SortPopup() {
+function SortPopup({ items }) {
   const [visiblePopup, setVisiblePopup] = React.useState(false);
 
   const toggleVisiblePopup = () => {
@@ -10,9 +10,15 @@ function SortPopup() {
   const sortRef = React.useRef();
 
   const handleOutsideClick = (e) => {
-    if (e.path.includes(sortRef.current)) {
-      console.log("hiiii");
+    if (!e.path.includes(sortRef.current)) {
+      setVisiblePopup(false);
     }
+  };
+
+  const [activeSortItem, setActiveSortItem] = React.useState(null);
+
+  const onSelectSortItem = (index) => {
+    setActiveSortItem(index);
   };
 
   React.useEffect(() => {
@@ -42,8 +48,19 @@ function SortPopup() {
         <div className="sort__popup">
           <ul>
             <li className="active">популярности</li>
-            <li>цене</li>
-            <li>алфавиту</li>
+            {items.map((item, index) => {
+              return (
+                <li
+                  className={activeSortItem === index ? "active" : ""}
+                  onClick={() => {
+                    setActiveSortItem(index);
+                  }}
+                  key={`${item}_${index}`}
+                >
+                  {item}
+                </li>
+              );
+            })}
           </ul>
         </div>
       )}
