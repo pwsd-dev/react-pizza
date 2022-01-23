@@ -4,7 +4,7 @@ import Button from "./Button";
 
 function Header() {
   const handleClick = () => {
-    alert("hi");
+    // alert("hi");
   };
   return (
     <div className="header">
