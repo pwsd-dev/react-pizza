@@ -1,6 +1,6 @@
 import React from "react";
 
-function Categories({ items }) {
+function Categories({ itemsCategories }) {
   const [activeItem, setActiveItem] = React.useState(null);
 
   const onSelectItem = (index) => {
@@ -19,7 +19,7 @@ function Categories({ items }) {
         >
           Все
         </li>
-        {items.map((item, index) => {
+        {itemsCategories.map((item, index) => {
           return (
             <li
               className={activeItem === index ? "active" : ""}

@@ -1,7 +1,6 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { Routes, Route } from "react-router-dom";
-
+import axios from "axios";
 import "./scss/app.scss";
 import { Header } from "./components";
 import { Home, Cart } from "./pages";
@@ -9,9 +8,19 @@ import { Home, Cart } from "./pages";
 console.log();
 
 function App() {
-  // const [state, setstate] = React.useState(initialState);
+  const [pizzas, setPizzas] = React.useState([]);
 
-  React.useEffect(() => {}, []);
+  React.useEffect(() => {
+    async function getData() {
+      let pizzasResponse = await axios
+        .get("http://imac-admin.local:3003/db.json")
+        .then(({ data }) => {
+          setPizzas(data.pizzas);
+        });
+    }
+
+    getData();
+  }, []);
 
   return (
     <div>
@@ -19,7 +28,7 @@ function App() {
         <Header />
         <div className="content">
           <Routes>
-            <Route path="/" element={<Home />} exact />
+            <Route path="/" element={<Home itemsPizza={pizzas} />} exact />
             <Route path="/cart" element={<Cart />} exact />
           </Routes>
         </div>
