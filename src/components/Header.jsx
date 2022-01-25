@@ -20,7 +20,7 @@ function Header() {
           </div>
         </Link>
         <div className="header__cart">
-          <Link to="cart">
+          <Link to="/cart">
             <Button className="button--cart" onClick={handleClick} children>
               <span>520 ₽</span>
               <div className="button__delimiter"></div>

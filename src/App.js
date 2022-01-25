@@ -9,6 +9,10 @@ import { Home, Cart } from "./pages";
 console.log();
 
 function App() {
+  // const [state, setstate] = React.useState(initialState);
+
+  React.useEffect(() => {}, []);
+
   return (
     <div>
       <div className="wrapper">
