@@ -23,7 +23,7 @@ function Home({ itemsPizza }) {
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
         {itemsPizza.map((obj) => (
-          <ItemPizza key={obj.id} />
+          <ItemPizza key={obj.id} {...obj} />
         ))}
       </div>
     </div>
