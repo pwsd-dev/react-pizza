@@ -1,19 +1,23 @@
 import React from "react";
+import classNames from "classnames";
 
-function ItemPizza({ name, imageUrl, price }) {
-  const types = ["тонкое", "традиционное"];
+function ItemPizza({ name, imageUrl, price, types }) {
+  const typeNames = ["тонкое", "традиционное"];
   const [activeType, setActiveType] = React.useState(0);
-  // const [activeType, setstate] = React.useState(initialState);
+  console.log(name, types);
   return (
     <div className="pizza-block">
       <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
       <h4 className="pizza-block__title">{name}</h4>
       <div className="pizza-block__selector">
         <ul>
-          {types.map((item, index) => (
+          {typeNames.map((item, index) => (
             <li
               key={`${item}_${index}`}
-              className={activeType === index ? "active" : ""}
+              className={classNames({
+                active: activeType === index,
+                disabled: !types.includes(index), // если массив types (который в json) не содержит какой либо из индексов, то применяется класс disabled
+              })}
               onClick={() => setActiveType(index)}
             >
               {item}
