@@ -1,12 +1,13 @@
 import React from "react";
 import classNames from "classnames";
+import PropTypes from "prop-types";
 
 function ItemPizza({ name, imageUrl, price, types, sizes }) {
   const typeNames = ["тонкое", "традиционное"];
   const [activeType, setActiveType] = React.useState(types[0]); //в массиве types в любом случае есть первый элемент, но первый элемент является индексом, где-то он 0 или 1, поэтому по умолчанию я передаю первое значение индекса, без этого будет небольшой баг, который будет применять disabled, но при этом сама плашка традиционное или тонкое будет с бэкграундом
   const [activeTypeSize, setActiveTypeSize] = React.useState(sizes[0]);
   const availableSizes = [26, 30, 40];
-  console.log(name, types);
+
   return (
     <div className="pizza-block">
       <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
@@ -63,5 +64,14 @@ function ItemPizza({ name, imageUrl, price, types, sizes }) {
     </div>
   );
 }
+
+console.log(PropTypes);
+
+ItemPizza.propTypes = {
+  name: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string.isRequired,
+  types: PropTypes.arrayOf(PropTypes.number).isRequired,
+  sizes: PropTypes.arrayOf(PropTypes.number).isRequired,
+};
 
 export default ItemPizza;

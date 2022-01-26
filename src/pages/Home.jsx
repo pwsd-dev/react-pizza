@@ -2,13 +2,11 @@ import React from "react";
 import { Categories, SortPopup, ItemPizza } from ".././components";
 
 function Home({ itemsPizza }) {
-  console.log(itemsPizza);
   return (
     <div className="container">
       <div className="content__top">
         <div className="categories">
           <Categories
-            onClickItem={(item) => console.log(item)}
             itemsCategories={[
               "Мясные",
               "Вегетарианская",
