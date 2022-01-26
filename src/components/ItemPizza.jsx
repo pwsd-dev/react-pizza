@@ -1,14 +1,24 @@
 import React from "react";
 
 function ItemPizza({ name, imageUrl, price }) {
+  const types = ["тонкое", "традиционное"];
+  const [activeType, setActiveType] = React.useState(0);
+  // const [activeType, setstate] = React.useState(initialState);
   return (
     <div className="pizza-block">
       <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
       <h4 className="pizza-block__title">{name}</h4>
       <div className="pizza-block__selector">
         <ul>
-          <li className="active">тонкое</li>
-          <li>традиционное</li>
+          {types.map((item, index) => (
+            <li
+              key={`${item}_${index}`}
+              className={activeType === index ? "active" : ""}
+              onClick={() => setActiveType(index)}
+            >
+              {item}
+            </li>
+          ))}
         </ul>
         <ul>
           <li className="active">26 см.</li>
