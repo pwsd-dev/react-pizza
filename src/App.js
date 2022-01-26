@@ -12,8 +12,8 @@ function App() {
 
   React.useEffect(() => {
     async function getData() {
-      const pizzasResponse = await axios
-        .get("http://imac-admin.local:3000/db.json")
+      await axios
+        .get("http://imac-admin.local:3001/db.json")
         .then(({ data }) => {
           setPizzas(data.pizzas);
         });
@@ -38,3 +38,16 @@ function App() {
 }
 
 export default App;
+
+/*
+Пример использования fetch вместо axios
+
+React.useEffect(() => {
+  fetch("http://imac-admin.local:3000/db.json")
+    .then((resp) => resp.json())
+    .then((json) => {
+      setPizzas(json.pizzas);
+    });
+}, []);
+
+*/

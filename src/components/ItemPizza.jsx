@@ -1,9 +1,11 @@
 import React from "react";
 import classNames from "classnames";
 
-function ItemPizza({ name, imageUrl, price, types }) {
+function ItemPizza({ name, imageUrl, price, types, sizes }) {
   const typeNames = ["тонкое", "традиционное"];
-  const [activeType, setActiveType] = React.useState(0);
+  const [activeType, setActiveType] = React.useState(types[0]); //в массиве types в любом случае есть первый элемент, но первый элемент является индексом, где-то он 0 или 1, поэтому по умолчанию я передаю первое значение индекса, без этого будет небольшой баг, который будет применять disabled, но при этом сама плашка традиционное или тонкое будет с бэкграундом
+  const [activeTypeSize, setActiveTypeSize] = React.useState(sizes[0]);
+  const availableSizes = [26, 30, 40];
   console.log(name, types);
   return (
     <div className="pizza-block">
@@ -25,9 +27,18 @@ function ItemPizza({ name, imageUrl, price, types }) {
           ))}
         </ul>
         <ul>
-          <li className="active">26 см.</li>
-          <li>30 см.</li>
-          <li>40 см.</li>
+          {availableSizes.map((item, index) => (
+            <li
+              key={`${item}_${index}`}
+              className={classNames({
+                active: activeTypeSize === index,
+                disabled: !sizes.includes(item), // если массив sizes (который в json) не содержит в себе своих же значений, то применяется класс disabled
+              })}
+              onClick={() => setActiveTypeSize(index)}
+            >
+              {item}см.
+            </li>
+          ))}
         </ul>
       </div>
       <div className="pizza-block__bottom">
