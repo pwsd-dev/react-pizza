@@ -15,7 +15,6 @@ function Categories({ itemsCategories }) {
           onClick={() => {
             onSelectItem(null);
           }}
-          className="active"
         >
           Все
         </li>
