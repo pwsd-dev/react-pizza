@@ -74,4 +74,12 @@ ItemPizza.propTypes = {
   sizes: PropTypes.arrayOf(PropTypes.number).isRequired,
 };
 
+ItemPizza.defaultProps = {
+  // если в родительский компонент не передан пропс, то по умолчанию будут переданы значения ниже
+  name: "---",
+  price: 0,
+  types: [],
+  sizes: [],
+};
+
 export default ItemPizza;
