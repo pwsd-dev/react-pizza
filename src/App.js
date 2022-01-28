@@ -8,6 +8,17 @@ import { Home, Cart } from "./pages";
 console.log();
 
 class App extends React.Component {
+  componentDidMount() {
+    async function getData() {
+      await axios
+        .get("http://imac-admin.local:3002/db.json")
+        .then(({ data }) => {
+          console.log(data.pizzas);
+        });
+    }
+
+    getData();
+  }
   render() {
     return (
       <div>
