@@ -7,37 +7,55 @@ import { Home, Cart } from "./pages";
 
 console.log();
 
-function App() {
-  const [pizzas, setPizzas] = React.useState([]);
-
-  React.useEffect(() => {
-    async function getData() {
-      await axios
-        .get("http://imac-admin.local:3002/db.json")
-        .then(({ data }) => {
-          setPizzas(data.pizzas);
-        });
-    }
-
-    getData();
-  }, []);
-
-  return (
-    <div>
-      <div className="wrapper">
-        <Header />
-        <div className="content">
-          <Routes>
-            <Route path="/" element={<Home itemsPizza={pizzas} />} exact />
-            <Route path="/cart" element={<Cart />} exact />
-          </Routes>
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <div className="wrapper">
+          <Header />
+          <div className="content">
+            <Routes>
+              <Route path="/" element={<Home itemsPizza={[]} />} exact />
+              <Route path="/cart" element={<Cart />} exact />
+            </Routes>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;
+
+// function App() {
+//   const [pizzas, setPizzas] = React.useState([]);
+
+//   React.useEffect(() => {
+//     async function getData() {
+//       await axios
+//         .get("http://imac-admin.local:3002/db.json")
+//         .then(({ data }) => {
+//           setPizzas(data.pizzas);
+//         });
+//     }
+
+//     getData();
+//   }, []);
+
+//   return (
+//     <div>
+//       <div className="wrapper">
+//         <Header />
+//         <div className="content">
+//           <Routes>
+//             <Route path="/" element={<Home itemsPizza={pizzas} />} exact />
+//             <Route path="/cart" element={<Cart />} exact />
+//           </Routes>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
 
 /*
 Пример использования fetch вместо axios
