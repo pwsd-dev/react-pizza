@@ -13,7 +13,7 @@ function App() {
   React.useEffect(() => {
     async function getData() {
       await axios
-        .get("http://imac-admin.local:3001/db.json")
+        .get("http://imac-admin.local:3002/db.json")
         .then(({ data }) => {
           setPizzas(data.pizzas);
         });
