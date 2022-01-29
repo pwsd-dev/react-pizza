@@ -4,69 +4,58 @@ import axios from "axios";
 import "./scss/app.scss";
 import { Header } from "./components";
 import { Home, Cart } from "./pages";
+import { setPizzas } from "./redux/actions/pizzas";
+import { connect } from "react-redux";
 
-console.log();
+function App() {
+  const [pizzas, setPizzas] = React.useState([]);
 
-class App extends React.Component {
-  componentDidMount() {
+  React.useEffect(() => {
     async function getData() {
       await axios
         .get("http://imac-admin.local:3002/db.json")
         .then(({ data }) => {
-          console.log(data.pizzas);
+          setPizzas(data.pizzas);
         });
     }
 
     getData();
-  }
-  render() {
-    return (
-      <div>
-        <div className="wrapper">
-          <Header />
-          <div className="content">
-            <Routes>
-              <Route path="/" element={<Home itemsPizza={[]} />} exact />
-              <Route path="/cart" element={<Cart />} exact />
-            </Routes>
-          </div>
+  }, []);
+
+  return (
+    <div>
+      <div className="wrapper">
+        <Header />
+        <div className="content">
+          <Routes>
+            <Route path="/" element={<Home items={pizzas} />} exact />
+            <Route path="/cart" element={<Cart />} exact />
+          </Routes>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  // взять state и поместить в props
+  return {
+    items: state.pizzas.items,
+    filters: state.filters,
+  };
+};
 
-// function App() {
-//   const [pizzas, setPizzas] = React.useState([]);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setPizzas: (items) => dispatch(setPizzas(items)),
+  };
+};
 
-//   React.useEffect(() => {
-//     async function getData() {
-//       await axios
-//         .get("http://imac-admin.local:3002/db.json")
-//         .then(({ data }) => {
-//           setPizzas(data.pizzas);
-//         });
-//     }
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 
-//     getData();
-//   }, []);
-
-//   return (
-//     <div>
-//       <div className="wrapper">
-//         <Header />
-//         <div className="content">
-//           <Routes>
-//             <Route path="/" element={<Home itemsPizza={pizzas} />} exact />
-//             <Route path="/cart" element={<Cart />} exact />
-//           </Routes>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
+// const mapDispatchToProps = {
+//   setPizzas,
+// };
 
 /*
 Пример использования fetch вместо axios
@@ -79,4 +68,40 @@ React.useEffect(() => {
     });
 }, []);
 
+*/
+
+/*
+class App extends React.Component {
+  componentDidMount() {
+    async function getData() {
+      await axios
+        .get("http://imac-admin.local:3002/db.json")
+        .then(({ data }) => {
+          this.props.setPizzas(data.pizzas);
+        });
+    }
+
+    getData();
+  }
+  render() {
+    console.log(this.props);
+    return (
+      <div>
+        <div className="wrapper">
+          <Header />
+          <div className="content">
+            <Routes>
+              <Route
+                path="/"
+                element={<Home items={this.props.items} />}
+                exact
+              />
+              <Route path="/cart" element={<Cart />} exact />
+            </Routes>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
 */
