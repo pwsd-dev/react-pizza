@@ -5,17 +5,23 @@ import "./scss/app.scss";
 import { Header } from "./components";
 import { Home, Cart } from "./pages";
 import { setPizzas } from "./redux/actions/pizzas";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 function App() {
-  const [pizzas, setPizzas] = React.useState([]);
+  const dispatch = useDispatch();
+  const { items } = useSelector(({ pizzas, filters }) => {
+    return {
+      items: pizzas.items,
+      sortBy: filters.sortBy,
+    };
+  });
 
   React.useEffect(() => {
     async function getData() {
       await axios
         .get("http://imac-admin.local:3002/db.json")
         .then(({ data }) => {
-          setPizzas(data.pizzas);
+          dispatch(setPizzas(data.pizzas));
         });
     }
 
@@ -28,7 +34,7 @@ function App() {
         <Header />
         <div className="content">
           <Routes>
-            <Route path="/" element={<Home items={pizzas} />} exact />
+            <Route path="/" element={<Home items={items} />} exact />
             <Route path="/cart" element={<Cart />} exact />
           </Routes>
         </div>
@@ -37,21 +43,9 @@ function App() {
   );
 }
 
-const mapStateToProps = (state) => {
-  // взять state и поместить в props
-  return {
-    items: state.pizzas.items,
-    filters: state.filters,
-  };
-};
+export default App;
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setPizzas: (items) => dispatch(setPizzas(items)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+// export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 // const mapDispatchToProps = {
 //   setPizzas,
@@ -104,4 +98,19 @@ class App extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  // взять state и поместить в props
+  return {
+    items: state.pizzas.items,
+    filters: state.filters,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setPizzas: (items) => dispatch(setPizzas(items)),
+  };
+};
+
 */
