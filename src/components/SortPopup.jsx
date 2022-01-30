@@ -1,6 +1,7 @@
 import React from "react";
 
-function SortPopup({ items }) {
+const SortPopup = React.memo(function SortPopup({ items }) {
+  // React memo делает поверхностное сравнение, и делает ререндер только при изменении пропсов
   const [visiblePopup, setVisiblePopup] = React.useState(false);
 
   const toggleVisiblePopup = () => {
@@ -68,6 +69,6 @@ function SortPopup({ items }) {
       )}
     </div>
   );
-}
+});
 
 export default SortPopup;

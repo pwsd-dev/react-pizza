@@ -5,21 +5,15 @@ import "./scss/app.scss";
 import { Header } from "./components";
 import { Home, Cart } from "./pages";
 import { setPizzas } from "./redux/actions/pizzas";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 function App() {
   const dispatch = useDispatch();
-  const { items } = useSelector(({ pizzas, filters }) => {
-    return {
-      items: pizzas.items,
-      sortBy: filters.sortBy,
-    };
-  });
 
   React.useEffect(() => {
     async function getData() {
       await axios
-        .get("http://imac-admin.local:3002/db.json")
+        .get("http://imac-admin.local:3000/db.json")
         .then(({ data }) => {
           dispatch(setPizzas(data.pizzas));
         });
@@ -34,7 +28,7 @@ function App() {
         <Header />
         <div className="content">
           <Routes>
-            <Route path="/" element={<Home items={items} />} exact />
+            <Route path="/" element={<Home />} exact />
             <Route path="/cart" element={<Cart />} exact />
           </Routes>
         </div>
