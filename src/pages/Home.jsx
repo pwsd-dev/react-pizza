@@ -11,6 +11,8 @@ const categoryNames = [
   "Закрытые",
 ];
 
+// если переносить эти два массива в пропсы, то будет происходить лишний ререндер
+
 const sortItems = [
   { name: "популярности", type: "popular" },
   { name: "цене", type: "price" },

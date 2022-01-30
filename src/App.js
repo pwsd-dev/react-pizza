@@ -4,21 +4,15 @@ import axios from "axios";
 import "./scss/app.scss";
 import { Header } from "./components";
 import { Home, Cart } from "./pages";
-import { setPizzas } from "./redux/actions/pizzas";
+import { fetchPizzas } from "./redux/actions/pizzas";
 import { useDispatch } from "react-redux";
 
 function App() {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    async function getData() {
-      await axios.get("http://localhost:3001/pizzas").then(({ data }) => {
-        dispatch(setPizzas(data));
-      });
-    }
-
-    getData();
-  }, [dispatch]);
+    console.log(dispatch(fetchPizzas()));
+  }, []);
 
   return (
     <div>
@@ -37,11 +31,19 @@ function App() {
 
 export default App;
 
-// export default connect(mapStateToProps, mapDispatchToProps)(App);
+/*
 
-// const mapDispatchToProps = {
-//   setPizzas,
-// };
+  // React.useEffect(() => {
+  //   async function getData() {
+  //     await axios.get("http://localhost:3001/pizzas").then(({ data }) => {
+  //       dispatch(setPizzas(data));
+  //     });
+  //   }
+
+  //   getData();
+  // }, [dispatch]);
+
+/*
 
 /*
 Пример использования fetch вместо axios
@@ -57,6 +59,13 @@ React.useEffect(() => {
 */
 
 /*
+
+// export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+// const mapDispatchToProps = {
+//   setPizzas,
+// };
+
 class App extends React.Component {
   componentDidMount() {
     async function getData() {
