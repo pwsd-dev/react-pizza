@@ -12,15 +12,13 @@ function App() {
 
   React.useEffect(() => {
     async function getData() {
-      await axios
-        .get("http://imac-admin.local:3000/db.json")
-        .then(({ data }) => {
-          dispatch(setPizzas(data.pizzas));
-        });
+      await axios.get("http://localhost:3001/pizzas").then(({ data }) => {
+        dispatch(setPizzas(data));
+      });
     }
 
     getData();
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>

@@ -21,10 +21,13 @@ function Home() {
   const dispatch = useDispatch();
   const items = useSelector(({ pizzas }) => pizzas.items);
 
-  const onSelectCategory = React.useCallback((index) => {
-    // будет один раз сохранять функцию и больше ее не выполнять (перерендеривать) , работает по принципу useEffect , но сохраняет ту функцию, которую указал
-    dispatch(setCategory(index));
-  }, []);
+  const onSelectCategory = React.useCallback(
+    (index) => {
+      // будет один раз сохранять функцию и больше ее не выполнять (перерендеривать) , работает по принципу useEffect , но сохраняет ту функцию, которую указал
+      dispatch(setCategory(index));
+    },
+    [dispatch]
+  );
 
   return (
     <div className="container">
