@@ -11,7 +11,7 @@ function App() {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    console.log(dispatch(fetchPizzas()));
+    dispatch(fetchPizzas());
   }, []);
 
   return (
