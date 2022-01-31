@@ -2,6 +2,7 @@ import React from "react";
 import { Categories, SortPopup, ItemPizza } from ".././components";
 import { useSelector, useDispatch } from "react-redux";
 import { setCategory } from "../redux/actions/filters";
+import { fetchPizzas } from "../redux/actions/pizzas";
 
 const categoryNames = [
   "Мясные",
@@ -22,6 +23,13 @@ const sortItems = [
 function Home() {
   const dispatch = useDispatch();
   const items = useSelector(({ pizzas }) => pizzas.items);
+
+  React.useEffect(() => {
+    if (items.length === 0) {
+      // решает проблему переотправки запроса на сервер при переходе на другую страницу
+      return dispatch(fetchPizzas());
+    }
+  }, [dispatch]);
 
   const onSelectCategory = React.useCallback(
     (index) => {
