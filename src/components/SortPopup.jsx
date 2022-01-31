@@ -1,6 +1,11 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-const SortPopup = React.memo(function SortPopup({ items }) {
+const SortPopup = React.memo(function SortPopup({
+  items,
+  onSelectSort,
+  activeSort,
+}) {
   // React memo делает поверхностное сравнение, и делает ререндер только при изменении пропсов
   const [visiblePopup, setVisiblePopup] = React.useState(false);
 
@@ -16,12 +21,15 @@ const SortPopup = React.memo(function SortPopup({ items }) {
     }
   };
 
-  const [activeSortItem, setActiveSortItem] = React.useState(0);
+  const activeLabel = items.find((obj) => obj.type === activeSort).name;
 
-  const activeLabel = items[activeSortItem].name;
+  console.log(items);
 
   const onSelectSortItem = (index) => {
-    setActiveSortItem(index);
+    if (onSelectSort) {
+      onSelectSort(index);
+    }
+
     setVisiblePopup(false);
   };
 
@@ -56,8 +64,8 @@ const SortPopup = React.memo(function SortPopup({ items }) {
               items.map((obj, index) => {
                 return (
                   <li
-                    className={activeSortItem === index ? "active" : ""}
-                    onClick={() => onSelectSortItem(index)}
+                    className={activeSort === obj.type ? "active" : ""}
+                    onClick={() => onSelectSortItem(obj.type)}
                     key={`${obj.type}_${index}`}
                   >
                     {obj.name}
@@ -70,5 +78,9 @@ const SortPopup = React.memo(function SortPopup({ items }) {
     </div>
   );
 });
+
+SortPopup.defaultProps = {
+  items: [],
+};
 
 export default SortPopup;

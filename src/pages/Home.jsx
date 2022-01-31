@@ -1,7 +1,7 @@
 import React from "react";
 import { Categories, SortPopup, ItemPizza } from ".././components";
 import { useSelector, useDispatch } from "react-redux";
-import { setCategory } from "../redux/actions/filters";
+import { setCategory, setSortBy } from "../redux/actions/filters";
 import { fetchPizzas } from "../redux/actions/pizzas";
 import ContentLoader from "react-content-loader";
 import Search from "../components/Search";
@@ -28,8 +28,6 @@ function Home() {
   const isLoaded = useSelector(({ pizzas }) => pizzas.isLoaded);
   const { category, sortBy } = useSelector(({ filters }) => filters);
 
-  console.log(category, sortBy);
-
   React.useEffect(() => {
     dispatch(fetchPizzas());
   }, [dispatch, category]);
@@ -38,6 +36,14 @@ function Home() {
     (index) => {
       // будет один раз сохранять функцию и больше ее не выполнять (перерендеривать) , работает по принципу useEffect , но сохраняет ту функцию, которую указал
       dispatch(setCategory(index));
+    },
+    [dispatch]
+  );
+
+  const onSelectSort = React.useCallback(
+    (type) => {
+      // будет один раз сохранять функцию и больше ее не выполнять (перерендеривать) , работает по принципу useEffect , но сохраняет ту функцию, которую указал
+      dispatch(setSortBy(type));
     },
     [dispatch]
   );
@@ -52,7 +58,11 @@ function Home() {
             onClickItemCategories={onSelectCategory}
           />
         </div>
-        <SortPopup items={sortItems} />
+        <SortPopup
+          items={sortItems}
+          activeSort={sortBy}
+          onSelectSort={onSelectSort}
+        />
         <Search />
       </div>
       <h2 className="content__title">Все пиццы</h2>

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Categories = React.memo(function Categories({
   itemsCategories,
@@ -35,6 +36,16 @@ const Categories = React.memo(function Categories({
     </div>
   );
 });
+
+Categories.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onClickItemCategories: PropTypes.func,
+};
+
+Categories.defaultProps = {
+  activeCategory: null,
+  items: [],
+};
 
 // class Categories extends React.Component {
 //   state = {
