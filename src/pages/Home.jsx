@@ -47,6 +47,7 @@ function Home() {
       <div className="content__top">
         <div className="categories">
           <Categories
+            activeCategory={category}
             itemsCategories={categoryNames}
             onClickItemCategories={onSelectCategory}
           />
