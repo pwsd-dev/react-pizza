@@ -9,6 +9,7 @@ const pizzas = (state = initialState, action) => {
     return {
       ...state, // возьми старые данные из state
       items: action.payload, // и замени на новый state
+      isLoaded: true,
     };
   }
 
