@@ -4,6 +4,29 @@ const initialState = {
 };
 
 const pizzas = (state = initialState, action) => {
+  switch (action.type) {
+    case "SET_PIZZAS":
+      return {
+        ...state, // возьми старые данные из state
+        items: action.payload, // и замени на новый state
+        isLoaded: true,
+      };
+
+    case "SET_LOADED":
+      return {
+        ...state, // возьми старые данные из state
+        isLoaded: action.payload,
+      };
+
+    default:
+      return state;
+  }
+};
+
+export default pizzas;
+
+/*
+
   if (action.type === "SET_PIZZAS") {
     // если прийдет action "SET_PIZZAS" ,
     return {
@@ -13,7 +36,17 @@ const pizzas = (state = initialState, action) => {
     };
   }
 
-  return state; // если не прийдет, то верни старый state
-};
+  if (action.type === "SET_LOADED") {
+    // если прийдет action "SET_PIZZAS" ,
+    return {
+      ...state, // возьми старые данные из state
+      isLoaded: action.payload,
+    };
+  }
 
-export default pizzas;
+  
+
+  return state; // если не прийдет, то верни старый state
+}
+
+*/
