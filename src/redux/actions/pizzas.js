@@ -5,13 +5,19 @@ export const setLoaded = (val) => ({
   payload: val,
 });
 
-export const fetchPizzas = () => (dispatch) => {
+export const fetchPizzas = (sortBy, category) => (dispatch) => {
   dispatch(setLoaded(false));
   //ассинхронное получение action'a из редакса с помощью redux thunk (до этого получал в app)
   async function getData() {
-    await axios.get("http://localhost:3001/pizzas").then(({ data }) => {
-      dispatch(setPizzas(data));
-    });
+    await axios
+      .get(
+        `http://localhost:3001/pizzas?${
+          category !== null ? `category=${category}` : ""
+        }&_sort=${sortBy.type}$_order=${sortBy.order}`
+      )
+      .then(({ data }) => {
+        dispatch(setPizzas(data));
+      });
   }
 
   getData();

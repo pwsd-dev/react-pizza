@@ -17,9 +17,9 @@ const categoryNames = [
 // если переносить эти два массива в пропсы, то будет происходить лишний ререндер
 
 const sortItems = [
-  { name: "популярности", type: "popular" },
-  { name: "цене", type: "price" },
-  { name: "алфавиту", type: "alphabet" },
+  { name: "популярности", type: "popular", order: "desc" },
+  { name: "цене", type: "price", order: "desc" },
+  { name: "алфавиту", type: "name", order: "asc" },
 ];
 
 function Home() {
@@ -29,8 +29,8 @@ function Home() {
   const { category, sortBy } = useSelector(({ filters }) => filters);
 
   React.useEffect(() => {
-    dispatch(fetchPizzas());
-  }, [dispatch, category]);
+    dispatch(fetchPizzas(sortBy, category));
+  }, [dispatch, sortBy, category]);
 
   const onSelectCategory = React.useCallback(
     (index) => {
@@ -60,7 +60,7 @@ function Home() {
         </div>
         <SortPopup
           items={sortItems}
-          activeSort={sortBy}
+          activeSort={sortBy.type}
           onSelectSort={onSelectSort}
         />
         <Search />
