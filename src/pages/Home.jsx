@@ -2,6 +2,7 @@ import React from "react";
 import { Categories, SortPopup, ItemPizza } from ".././components";
 import { useSelector, useDispatch } from "react-redux";
 import { setCategory, setSortBy } from "../redux/actions/filters";
+import { setSearch } from "../redux/actions/search";
 import { fetchPizzas } from "../redux/actions/pizzas";
 import ContentLoader from "react-content-loader";
 import Search from "../components/Search";
@@ -27,10 +28,11 @@ function Home() {
   const items = useSelector(({ pizzas }) => pizzas.items);
   const isLoaded = useSelector(({ pizzas }) => pizzas.isLoaded);
   const { category, sortBy } = useSelector(({ filters }) => filters);
+  const searchItems = useSelector(({ search }) => search);
 
   React.useEffect(() => {
-    dispatch(fetchPizzas(sortBy, category));
-  }, [dispatch, sortBy, category]);
+    dispatch(fetchPizzas(sortBy, category, searchItems));
+  }, [dispatch, sortBy, category, searchItems]);
 
   const onSelectCategory = React.useCallback(
     (index) => {
@@ -42,8 +44,14 @@ function Home() {
 
   const onSelectSort = React.useCallback(
     (type) => {
-      // будет один раз сохранять функцию и больше ее не выполнять (перерендеривать) , работает по принципу useEffect , но сохраняет ту функцию, которую указал
       dispatch(setSortBy(type));
+    },
+    [dispatch]
+  );
+
+  const onSelectSearch = React.useCallback(
+    (search) => {
+      dispatch(setSearch(search));
     },
     [dispatch]
   );
@@ -63,7 +71,7 @@ function Home() {
           activeSort={sortBy.type}
           onSelectSort={onSelectSort}
         />
-        <Search />
+        <Search onSearch={onSelectSearch} activeSearch={searchItems} />
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
