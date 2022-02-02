@@ -10,7 +10,7 @@ function Search({ onSearch, items }) {
 
     onSearch(name);
 
-    console.log(input);
+    // console.log(input);
   };
 
   return (

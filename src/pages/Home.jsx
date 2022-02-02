@@ -51,6 +51,7 @@ function Home() {
   const onSelectSearch = React.useCallback(
     (name) => {
       dispatch(setSearch(name));
+      console.log("setsearch", name);
     },
     [dispatch]
   );
