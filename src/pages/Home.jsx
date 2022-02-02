@@ -70,7 +70,7 @@ function Home() {
           activeSort={sortBy.type}
           onSelectSort={onSelectSort}
         />
-        <Search onSearch={onSelectSearch} activeSearch={searchItems} />
+        <Search onSearch={onSelectSearch} items={searchItems} />
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">

@@ -1,13 +1,8 @@
-const initialState = {
-  search: "",
-};
+const initialState = "";
 
 const search = (state = initialState, action) => {
   if (action.type === "SET_SEARCH") {
-    return {
-      ...state,
-      search: action.payload,
-    };
+    return action.payload;
   }
 
   return state;
