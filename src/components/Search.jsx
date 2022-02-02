@@ -1,15 +1,15 @@
 import React from "react";
 
-function Search() {
+function Search({ onSearch }) {
   const input = React.useRef();
 
-  const searchItem = (event, onSearch) => {
+  const searchItem = () => {
     console.log(input.current.value);
+    console.log(onSearch);
   };
 
   return (
     <div>
-      Поиск
       <input ref={input} />
       <button onClick={searchItem}>Поиск</button>
     </div>

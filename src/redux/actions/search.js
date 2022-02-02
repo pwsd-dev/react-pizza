@@ -1,4 +1,4 @@
-export const setSearch = (search) => ({
+export const setSearch = (name) => ({
   type: "SET_SEARCH",
-  payload: search,
+  payload: name,
 });
