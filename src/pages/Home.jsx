@@ -1,11 +1,10 @@
 import React from "react";
-import { Categories, SortPopup, ItemPizza } from ".././components";
+import { Categories, SortPopup, ItemPizza, Search } from ".././components";
 import { useSelector, useDispatch } from "react-redux";
 import { setCategory, setSortBy } from "../redux/actions/filters";
 import { setSearch } from "../redux/actions/search";
 import { fetchPizzas } from "../redux/actions/pizzas";
 import ContentLoader from "react-content-loader";
-import Search from "../components/Search";
 
 const categoryNames = [
   "Мясные",
@@ -50,8 +49,8 @@ function Home() {
   );
 
   const onSelectSearch = React.useCallback(
-    (search) => {
-      dispatch(setSearch(search));
+    (name) => {
+      dispatch(setSearch(name));
     },
     [dispatch]
   );
