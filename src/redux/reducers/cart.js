@@ -1,21 +1,24 @@
 const initialState = {
-  items: {},
   totalPrice: 0,
   itemsCount: 0,
+  items: {},
 };
 
 const cart = (state = initialState, action) => {
   switch (action.type) {
-    case "ADD_PIZZA_CART":
-      return {
-        ...state, // возьми старые данные из state
-        items: {
-          [action.payload.id]: [
-            ...state.items[action.payload.id],
-            action.payload,
-          ], // если динамическое значение, то нужно передавать в квадратных скобках
-        },
+    case "ADD_PIZZA_CART": {
+      const newItems = {
+        ...state.items,
+        [action.payload.id]: !state.items[action.payload.id]
+          ? [action.payload]
+          : [...state.items[action.payload.id], action.payload], // если динамическое значение, то нужно передавать в квадратных скобках
       };
+      return {
+        ...state,
+        items: newItems,
+        itemsCount: Object.keys(state.items).length,
+      };
+    }
 
     default:
       return state;

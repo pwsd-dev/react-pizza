@@ -16,7 +16,7 @@ function Header() {
   // }));
   // const dispatch = useDispatch();
 
-  // const { totalPrice, itemsCount } = useSelector(({ cart }) => cart);
+  const { totalPrice, itemsCount } = useSelector(({ cart }) => cart);
 
   return (
     <div className="header">
@@ -33,7 +33,7 @@ function Header() {
         <div className="header__cart">
           <Link to="/cart">
             <Button className="button--cart" onClick={handleClick} children>
-              <span>520₽</span>
+              <span>{totalPrice}520₽</span>
               <div className="button__delimiter"></div>
               <svg
                 width="18"
@@ -64,7 +64,7 @@ function Header() {
                   strokeLinejoin="round"
                 />
               </svg>
-              <span>1</span>
+              <span>{itemsCount}</span>
             </Button>
           </Link>
         </div>

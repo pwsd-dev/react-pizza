@@ -3,6 +3,7 @@ import { Categories, SortPopup, ItemPizza, Search } from ".././components";
 import { useSelector, useDispatch } from "react-redux";
 import { setCategory, setSortBy } from "../redux/actions/filters";
 import { setSearch } from "../redux/actions/search";
+import { AddPizzaCart } from "../redux/actions/cart";
 
 import { fetchPizzas } from "../redux/actions/pizzas";
 import ContentLoader from "react-content-loader";
@@ -55,7 +56,12 @@ function Home() {
   );
 
   const addPizzaToCart = (obj) => {
-    console.log(obj, "dsad");
+    dispatch({
+      type: "ADD_PIZZA_CART",
+      payload: obj,
+    });
+
+    console.log("onClick", obj);
   };
 
   const onSelectSearch = React.useCallback(

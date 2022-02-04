@@ -14,7 +14,7 @@ function ItemPizza({ id, name, imageUrl, price, types, sizes, onAddToCart }) {
       id,
       name,
       imageUrl,
-      imageUrl,
+      onAddToCart,
       type: typeNames[activeType],
       size: availableSizes[activeTypeSize],
     };

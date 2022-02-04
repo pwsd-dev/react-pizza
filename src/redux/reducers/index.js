@@ -7,8 +7,8 @@ import cartReducer from "./cart";
 const rootReducer = combineReducers({
   filters: filtersReducer,
   pizzas: pizzasReducer,
-  searchReducer,
-  cartReducer,
+  search: searchReducer,
+  cart: cartReducer,
 });
 
 export default rootReducer;
