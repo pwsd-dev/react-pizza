@@ -25,6 +25,11 @@ const sortItems = [
 function Home() {
   const dispatch = useDispatch();
   const items = useSelector(({ pizzas }) => pizzas.items);
+
+  // const items = useSelector(({ pizzas }) =>
+  //   pizzas.items.filter(pizzas.items.includes(searchItems))
+  // );
+
   const isLoaded = useSelector(({ pizzas }) => pizzas.isLoaded);
   const { category, sortBy } = useSelector(({ filters }) => filters);
   const searchItems = useSelector(({ search }) => search);
@@ -71,7 +76,7 @@ function Home() {
           activeSort={sortBy.type}
           onSelectSort={onSelectSort}
         />
-        <Search onSearch={onSelectSearch} items={searchItems} />
+        <Search onSearch={onSelectSearch} activeSearch={searchItems} />
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">

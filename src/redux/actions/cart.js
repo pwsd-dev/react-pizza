@@ -1,11 +1,11 @@
 // action creator - функция, которая возвращает объект action
 
-// const setSortBy = (name) => ({
-//   type: "SET_SORT_BY",
-//   payload: name,
-// });
+const setTotalPrice = (price) => ({
+  type: "SET_TOTAL_PRICE",
+  payload: price,
+});
 
-// const setCategory = (categoryIndex) => ({
-//   type: "SET_CATEGORY",
-//   payload: categoryIndex,
-// });
+const setTotalCount = (count) => ({
+  type: "SET_TOTAL_COUNT",
+  payload: count,
+});
