@@ -26,15 +26,32 @@ const sortItems = [
 
 function Home() {
   const dispatch = useDispatch();
-  const items = useSelector(({ pizzas }) => pizzas.items);
 
-  // const items = useSelector(({ pizzas }) =>
-  //   pizzas.items.filter(pizzas.items.includes(searchItems))
-  // );
+  // const filteredItems = useSelector(() => {
+  //   console.log(items);
+  //   // items.filter(items.includes(searchItems))
+  // });
+  // console.log(filteredItems);
 
   const isLoaded = useSelector(({ pizzas }) => pizzas.isLoaded);
   const { category, sortBy } = useSelector(({ filters }) => filters);
-  const searchItems = useSelector(({ search }) => search);
+  let searchItems = useSelector(({ search }) => search);
+  // const pizzas = useSelector(({ pizzas }) => pizzas);
+  // let items = useSelector(({ pizzas }) => {
+  //   return pizzas.items;
+  // });
+  let pizzasItems = useSelector(({ pizzas }) => {
+    return pizzas.items;
+  });
+
+  //
+
+  let items = pizzasItems.filter((item) =>
+    item.name.toLowerCase().includes(searchItems.toLowerCase())
+  );
+
+  // const items = pizzas.items.filter(items.includes(searchItems));
+  console.log(searchItems);
 
   React.useEffect(() => {
     dispatch(fetchPizzas(sortBy, category, searchItems));
