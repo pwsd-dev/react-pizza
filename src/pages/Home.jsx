@@ -3,6 +3,7 @@ import { Categories, SortPopup, ItemPizza, Search } from ".././components";
 import { useSelector, useDispatch } from "react-redux";
 import { setCategory, setSortBy } from "../redux/actions/filters";
 import { setSearch } from "../redux/actions/search";
+
 import { fetchPizzas } from "../redux/actions/pizzas";
 import ContentLoader from "react-content-loader";
 
@@ -53,6 +54,10 @@ function Home() {
     [dispatch]
   );
 
+  const addPizzaToCart = (obj) => {
+    console.log(obj, "dsad");
+  };
+
   const onSelectSearch = React.useCallback(
     (name) => {
       dispatch(setSearch(name));
@@ -81,7 +86,10 @@ function Home() {
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
         {isLoaded
-          ? items && items.map((obj) => <ItemPizza key={obj.id} {...obj} />)
+          ? items &&
+            items.map((obj) => (
+              <ItemPizza onAddToCart={addPizzaToCart} key={obj.id} {...obj} />
+            ))
           : Array(8)
               .fill()
               .map((_, index) => (

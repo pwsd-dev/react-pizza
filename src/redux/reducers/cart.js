@@ -6,16 +6,15 @@ const initialState = {
 
 const cart = (state = initialState, action) => {
   switch (action.type) {
-    case "SET_TOTAL_PRICE":
+    case "ADD_PIZZA_CART":
       return {
         ...state, // возьми старые данные из state
-        totalPrice: action.payload, // и замени на новый state
-      };
-
-    case "SET_TOTAL_COUNT":
-      return {
-        ...state, // возьми старые данные из state
-        itemsCount: action.payload,
+        items: {
+          [action.payload.id]: [
+            ...state.items[action.payload.id],
+            action.payload,
+          ], // если динамическое значение, то нужно передавать в квадратных скобках
+        },
       };
 
     default:

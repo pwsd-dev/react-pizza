@@ -1,12 +1,25 @@
 import React from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
+import Button from "./Button";
 
-function ItemPizza({ name, imageUrl, price, types, sizes }) {
-  const typeNames = ["тонкое", "традиционное"];
+function ItemPizza({ id, name, imageUrl, price, types, sizes, onAddToCart }) {
   const [activeType, setActiveType] = React.useState(types[0]); //в массиве types в любом случае есть первый элемент, но первый элемент является индексом, где-то он 0 или 1, поэтому по умолчанию я передаю первое значение индекса, без этого будет небольшой баг, который будет применять disabled, но при этом сама плашка традиционное или тонкое будет с бэкграундом
-  const [activeTypeSize, setActiveTypeSize] = React.useState(sizes[0]);
+  const [activeTypeSize, setActiveTypeSize] = React.useState(0);
+  const typeNames = ["тонкое", "традиционное"];
   const availableSizes = [26, 30, 40];
+
+  const handleAddPizza = () => {
+    const obj = {
+      id,
+      name,
+      imageUrl,
+      imageUrl,
+      type: typeNames[activeType],
+      size: availableSizes[activeTypeSize],
+    };
+    onAddToCart(obj);
+  };
 
   return (
     <div className="pizza-block">
@@ -42,9 +55,13 @@ function ItemPizza({ name, imageUrl, price, types, sizes }) {
           ))}
         </ul>
       </div>
-      <div className="pizza-block__bottom">
+      <div className="pizza-block__bottom add-to">
         <div className="pizza-block__price">от {price} ₽</div>
-        <div className="button button--outline button--add">
+        <Button
+          onClick={handleAddPizza}
+          className="button button--outline button--add"
+          outline={true}
+        >
           <svg
             width="12"
             height="12"
@@ -59,7 +76,7 @@ function ItemPizza({ name, imageUrl, price, types, sizes }) {
           </svg>
           <span>Добавить</span>
           <i>2</i>
-        </div>
+        </Button>
       </div>
     </div>
   );
