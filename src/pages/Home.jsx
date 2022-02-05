@@ -39,7 +39,11 @@ function Home() {
     return item.name.toLowerCase().includes(searchItems.toLowerCase());
   });
 
-  console.log(searchItems);
+  const cartItems = useSelector(({ cart }) => {
+    return cart.items;
+  });
+
+  console.log(cartItems);
 
   React.useEffect(() => {
     dispatch(fetchPizzas(sortBy, category, searchItems));
@@ -63,7 +67,6 @@ function Home() {
   const addPizzaToCart = React.useCallback(
     (obj) => {
       dispatch(AddPizzaCart(obj));
-      console.log("onClick", obj);
     },
     [dispatch]
   );
@@ -71,7 +74,6 @@ function Home() {
   const onSelectSearch = React.useCallback(
     (name) => {
       dispatch(setSearch(name));
-      console.log("setsearch", name);
     },
     [dispatch]
   );
@@ -98,7 +100,12 @@ function Home() {
         {isLoaded
           ? items &&
             items.map((obj) => (
-              <ItemPizza onAddToCart={addPizzaToCart} key={obj.id} {...obj} />
+              <ItemPizza
+                onAddToCart={addPizzaToCart}
+                countedAddToCart={cartItems[obj.id] && cartItems[obj.id].length}
+                key={obj.id}
+                {...obj}
+              />
             ))
           : Array(8)
               .fill()

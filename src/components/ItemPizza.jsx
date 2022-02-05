@@ -3,7 +3,16 @@ import classNames from "classnames";
 import PropTypes from "prop-types";
 import Button from "./Button";
 
-function ItemPizza({ id, name, imageUrl, price, types, sizes, onAddToCart }) {
+function ItemPizza({
+  id,
+  name,
+  imageUrl,
+  price,
+  types,
+  sizes,
+  onAddToCart,
+  countedAddToCart,
+}) {
   const [activeType, setActiveType] = React.useState(types[0]); //в массиве types в любом случае есть первый элемент, но первый элемент является индексом, где-то он 0 или 1, поэтому по умолчанию я передаю первое значение индекса, без этого будет небольшой баг, который будет применять disabled, но при этом сама плашка традиционное или тонкое будет с бэкграундом
   const [activeTypeSize, setActiveTypeSize] = React.useState(0);
   const typeNames = ["тонкое", "традиционное"];
@@ -76,7 +85,8 @@ function ItemPizza({ id, name, imageUrl, price, types, sizes, onAddToCart }) {
             />
           </svg>
           <span>Добавить</span>
-          <i>2</i>
+          {console.log(countedAddToCart)}
+          {countedAddToCart && <i>{countedAddToCart}</i>}
         </Button>
       </div>
     </div>
