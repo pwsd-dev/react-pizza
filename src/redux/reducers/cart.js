@@ -16,7 +16,7 @@ const cart = (state = initialState, action) => {
       return {
         ...state,
         items: newItems,
-        itemsCount: Object.keys(state.items).length,
+        itemsCount: Object.keys(newItems).length,
       };
     }
 

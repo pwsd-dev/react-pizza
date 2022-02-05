@@ -27,30 +27,17 @@ const sortItems = [
 function Home() {
   const dispatch = useDispatch();
 
-  // const filteredItems = useSelector(() => {
-  //   console.log(items);
-  //   // items.filter(items.includes(searchItems))
-  // });
-  // console.log(filteredItems);
-
   const isLoaded = useSelector(({ pizzas }) => pizzas.isLoaded);
   const { category, sortBy } = useSelector(({ filters }) => filters);
   let searchItems = useSelector(({ search }) => search);
-  // const pizzas = useSelector(({ pizzas }) => pizzas);
-  // let items = useSelector(({ pizzas }) => {
-  //   return pizzas.items;
-  // });
-  let pizzasItems = useSelector(({ pizzas }) => {
+
+  const pizzasItems = useSelector(({ pizzas }) => {
     return pizzas.items;
   });
-
-  //
-
-  let items = pizzasItems.filter((item) =>
+  const items = pizzasItems.filter((item) =>
     item.name.toLowerCase().includes(searchItems.toLowerCase())
   );
 
-  // const items = pizzas.items.filter(items.includes(searchItems));
   console.log(searchItems);
 
   React.useEffect(() => {
