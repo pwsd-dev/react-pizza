@@ -1,7 +1,7 @@
 const initialState = {
+  items: {},
   totalPrice: 0,
   itemsCount: 0,
-  items: {},
 };
 
 const cart = (state = initialState, action) => {
@@ -13,10 +13,15 @@ const cart = (state = initialState, action) => {
           ? [action.payload]
           : [...state.items[action.payload.id], action.payload], // если динамическое значение, то нужно передавать в квадратных скобках
       };
+
+      const allPizzas = [].concat.apply([], Object.values(newItems)); //берется новый массив [] перед конкат, далее apply помещает все массивы (содержащие в себе все значения объектов) в новый массив, а конкат объединяет все массивы в один
+      const totalPrice = allPizzas.reduce((sum, obj) => obj.price + sum, 0);
+      // console.log(totalPrice);
       return {
         ...state,
         items: newItems,
-        itemsCount: [].concat.apply([], Object.values(newItems)).length,
+        itemsCount: allPizzas.length,
+        totalPrice,
       };
     }
 

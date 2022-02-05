@@ -3,18 +3,11 @@ import logo from ".././assets/img/pizza-logo.svg";
 import Button from "./Button";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-// import { AddPizzaCart } from "../redux/actions/search";
 
 function Header() {
   const handleClick = () => {
     // alert("hi");
   };
-
-  // const { totalPrice, itemsCount } = useSelector(({ cart }) => ({
-  //   totalPrice: cart.totalPrice,
-  //   itemsCount: cart.itemsCount,
-  // }));
-  // const dispatch = useDispatch();
 
   const { totalPrice, itemsCount } = useSelector(({ cart }) => cart);
 
@@ -33,7 +26,7 @@ function Header() {
         <div className="header__cart">
           <Link to="/cart">
             <Button className="button--cart" onClick={handleClick} children>
-              <span>{totalPrice}520₽</span>
+              <span>{totalPrice}₽</span>
               <div className="button__delimiter"></div>
               <svg
                 width="18"

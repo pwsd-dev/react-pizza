@@ -60,14 +60,13 @@ function Home() {
     [dispatch]
   );
 
-  const addPizzaToCart = (obj) => {
-    dispatch({
-      type: "ADD_PIZZA_CART",
-      payload: obj,
-    });
-
-    console.log("onClick", obj);
-  };
+  const addPizzaToCart = React.useCallback(
+    (obj) => {
+      dispatch(AddPizzaCart(obj));
+      console.log("onClick", obj);
+    },
+    [dispatch]
+  );
 
   const onSelectSearch = React.useCallback(
     (name) => {
@@ -92,7 +91,7 @@ function Home() {
           activeSort={sortBy.type}
           onSelectSort={onSelectSort}
         />
-        <Search onSearch={onSelectSearch} activeSearch={searchItems} />
+        <Search onSearch={onSelectSearch} />
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
