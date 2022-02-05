@@ -34,9 +34,10 @@ function Home() {
   const pizzasItems = useSelector(({ pizzas }) => {
     return pizzas.items;
   });
-  const items = pizzasItems.filter((item) =>
-    item.name.toLowerCase().includes(searchItems.toLowerCase())
-  );
+
+  const items = pizzasItems.filter((item) => {
+    return item.name.toLowerCase().includes(searchItems.toLowerCase());
+  });
 
   console.log(searchItems);
 
@@ -124,6 +125,11 @@ function Home() {
 export default Home;
 
 /*
+
+// const items = pizzasItems.filter((item) =>
+  //   item.name.toLowerCase().includes(searchItems.toLowerCase()) неявное возвращение профильтрованных items
+  // );
+
 
   React.useEffect(() => {
     if (items.length === 0) {
