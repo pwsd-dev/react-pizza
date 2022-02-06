@@ -1,8 +1,13 @@
 @import ".././variables.scss";
+@import "../libs/include-media";
 
 .categories {
   ul {
     display: flex;
+
+    @include media("<=phone") {
+      display: none;
+    }
 
     li {
       background-color: #f9f9f9;

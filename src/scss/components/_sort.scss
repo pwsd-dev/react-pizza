@@ -6,6 +6,10 @@
     display: flex;
     align-items: center;
 
+    @include media("<=phone") {
+      display: none;
+    }
+
     svg {
       margin-right: 8px;
       transform: rotate(180deg);
@@ -36,6 +40,10 @@
     overflow: hidden;
     padding: 10px 0;
     width: 160px;
+
+    @include media("<=phone") {
+      display: none;
+    }
 
     ul {
       overflow: hidden;
