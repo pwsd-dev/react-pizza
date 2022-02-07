@@ -2,6 +2,8 @@ import React from "react";
 import { CartItem } from ".././components";
 import { useSelector, useDispatch } from "react-redux";
 import { clearCart } from "../redux/actions/cart";
+import imgEmptyCart from ".././assets/img/empty-cart.png";
+import { Link } from "react-router-dom";
 
 function Cart() {
   const dispatch = useDispatch();
@@ -19,9 +21,9 @@ function Cart() {
   };
 
   return (
-    <div className="content">
-      <div className="container container--cart">
-        {itemsCount ? (
+    <div classNameName="content">
+      {itemsCount ? (
+        <div className="container container--cart">
           <div className="cart">
             <div className="cart__top">
               <h2 className="content__title">
@@ -119,55 +121,59 @@ function Cart() {
                 </span>
               </div>
               <div className="cart__bottom-buttons">
-                <a
-                  href="/"
-                  className="button button--outline button--add go-back-btn"
-                >
-                  <svg
-                    width="8"
-                    height="14"
-                    viewBox="0 0 8 14"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
+                <Link to="/">
+                  <button
+                    href="/"
+                    className="button button--outline button--add go-back-btn"
                   >
-                    <path
-                      d="M7 13L1 6.93015L6.86175 1"
-                      stroke="#D3D3D3"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
+                    <svg
+                      width="8"
+                      height="14"
+                      viewBox="0 0 8 14"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M7 13L1 6.93015L6.86175 1"
+                        stroke="#D3D3D3"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
 
-                  <span>Вернуться назад</span>
-                </a>
+                    <span>Вернуться назад</span>
+                  </button>
+                </Link>
                 <div className="button pay-btn">
                   <span>Оплатить сейчас</span>
                 </div>
               </div>
             </div>
           </div>
-        ) : (
-          <div class="content">
-            <div class="container container--cart">
-              <div class="cart cart--empty">
-                <h2>
-                  Корзина пустая <icon>😕</icon>
-                </h2>
-                <p>
-                  Вероятней всего, вы не заказывали ещё пиццу.
-                  <br />
-                  Для того, чтобы заказать пиццу, перейди на главную страницу.
-                </p>
-                <img src="/img/empty-cart.png" alt="Empty cart" />
-                <a href="/" class="button button--black">
+        </div>
+      ) : (
+        <div className="content">
+          <div className="container container--cart">
+            <div className="cart cart--empty">
+              <h2>
+                Корзина пустая <icon>😕</icon>
+              </h2>
+              <p>
+                Вероятней всего, вы не заказывали ещё пиццу.
+                <br />
+                Для того, чтобы заказать пиццу, перейди на главную страницу.
+              </p>
+              <img src={imgEmptyCart} alt="Empty cart" />
+              <Link to="/">
+                <button className="button button--black">
                   <span>Вернуться назад</span>
-                </a>
-              </div>
+                </button>
+              </Link>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
