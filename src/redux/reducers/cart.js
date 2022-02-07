@@ -48,11 +48,13 @@ const cart = (state = initialState, action) => {
         ...state.items,
       };
       const currentTotalPrice = newRemovedItems[action.payload].totalPrice; // перед удалением узнал сколько totalPrice
+      const currentTotalCount = newRemovedItems[action.payload].items.length;
       delete newRemovedItems[action.payload];
       return {
         ...state,
         items: newRemovedItems,
         totalPrice: state.totalPrice - currentTotalPrice,
+        itemsCount: state.itemsCount - currentTotalCount,
       };
     }
 
