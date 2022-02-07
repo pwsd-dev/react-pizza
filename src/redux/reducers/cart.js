@@ -42,6 +42,20 @@ const cart = (state = initialState, action) => {
         itemsCount: 0,
       };
 
+    case "REMOVE_CART_ITEM": {
+      const newRemovedItems = {
+        //генерация нового объекта всех пицц
+        ...state.items,
+      };
+      const currentTotalPrice = newRemovedItems[action.payload].totalPrice; // перед удалением узнал сколько totalPrice
+      delete newRemovedItems[action.payload];
+      return {
+        ...state,
+        items: newRemovedItems,
+        totalPrice: state.totalPrice - currentTotalPrice,
+      };
+    }
+
     default:
       return state;
   }
