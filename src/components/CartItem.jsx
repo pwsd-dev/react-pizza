@@ -1,8 +1,26 @@
 import React from "react";
 
-function CartItem({ id, name, type, size, totalPrice, itemsCount, onRemove }) {
+function CartItem({
+  id,
+  name,
+  type,
+  size,
+  totalPrice,
+  itemsCount,
+  onRemove,
+  onPlus,
+  onMinus,
+}) {
   const handleRemove = () => {
     onRemove(id);
+  };
+
+  const handlePlusItem = () => {
+    onPlus(id);
+  };
+
+  const handleMinusItem = () => {
+    onMinus(id);
   };
 
   return (
@@ -21,7 +39,10 @@ function CartItem({ id, name, type, size, totalPrice, itemsCount, onRemove }) {
         </p>
       </div>
       <div className="cart__item-count">
-        <div className="button button--outline button--circle cart__item-count-minus">
+        <div
+          onClick={handleMinusItem}
+          className="button button--outline button--circle cart__item-count-minus"
+        >
           <svg
             width="10"
             height="10"
@@ -40,7 +61,10 @@ function CartItem({ id, name, type, size, totalPrice, itemsCount, onRemove }) {
           </svg>
         </div>
         <b>{itemsCount}</b>
-        <div className="button button--outline button--circle cart__item-count-plus">
+        <div
+          onClick={handlePlusItem}
+          className="button button--outline button--circle cart__item-count-plus"
+        >
           <svg
             width="10"
             height="10"
