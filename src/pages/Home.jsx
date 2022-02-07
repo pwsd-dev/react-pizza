@@ -1,11 +1,12 @@
 import React from "react";
 import { Categories, SortPopup, ItemPizza, Search } from ".././components";
 import { useSelector, useDispatch } from "react-redux";
+
 import { setCategory, setSortBy } from "../redux/actions/filters";
 import { setSearch } from "../redux/actions/search";
 import { AddPizzaCart } from "../redux/actions/cart";
-
 import { fetchPizzas } from "../redux/actions/pizzas";
+
 import ContentLoader from "react-content-loader";
 
 const categoryNames = [
@@ -102,7 +103,9 @@ function Home() {
             items.map((obj) => (
               <ItemPizza
                 onAddToCart={addPizzaToCart}
-                countedAddToCart={cartItems[obj.id] && cartItems[obj.id].length}
+                countedAddToCart={
+                  cartItems[obj.id] && cartItems[obj.id].items.length
+                }
                 key={obj.id}
                 {...obj}
               />
